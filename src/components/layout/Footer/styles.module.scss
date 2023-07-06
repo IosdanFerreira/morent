@@ -1,0 +1,41 @@
+
+.footer {
+    background: #f1f1f1;
+    padding: 50px 0 20px 0;
+    box-shadow: 1px -3px 12px 0px #f1f1f1;
+}
+
+.logo {
+    width: 128px;
+}
+
+.footer__list {
+    h6 {
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    ul li a {
+        display: block;
+        margin-bottom: 10px;
+        &:hover {
+            text-decoration: underline !important;
+        }
+    }
+    
+}
+
+.copy__text {
+    text-align: center;
+    margin-top: 50px;
+}
+
+@media only screen and (max-width: 992px) {
+    .footer__list {
+    
+        h6 {
+            margin-top: 20px !important;
+        }
+        
+    }
+}

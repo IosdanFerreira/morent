@@ -1,0 +1,15 @@
+@import '../../scss/variables.scss';
+
+.custom__button {
+    font-weight: 400;
+    color: #fff;
+    border: none;
+    background: #000;
+    border-radius: 20px;
+    padding: 6px 20px;
+    transition: 0.2s ease;
+
+    &:hover {
+        background: #242424;
+    }
+}
