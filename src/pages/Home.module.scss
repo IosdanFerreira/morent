@@ -1,9 +1,47 @@
+@import "../scss/variables.scss";
+@import "../scss/mixins.scss";
+
 .catalog__text {
-    h3 {
-        font-weight: bold;
-    }
+  margin-top: 50px;
+  h3 {
+    font-weight: bold;
+  }
 }
 
-.filters_container {
-    padding: 30px 0;
+.section__products {
+  padding: 50px 0 80px 0;
+}
+
+.products__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 992px) {
+  .products__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .products__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 556px) {
+  .products__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
 }

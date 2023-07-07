@@ -9,6 +9,9 @@ import Link from 'next/link';
 import { Avatar, Badge, Space } from 'antd/lib';
 import {AiOutlineShoppingCart, AiOutlineMenu} from 'react-icons/ai';
 
+// components
+import CartDrawer from '@/components/CartDrawer';
+
 export default function Header() {
   return (
     <>
@@ -50,11 +53,7 @@ export default function Header() {
                     </li>
                   </ul>
 
-                  <Badge count={2} showZero>
-                    <button>
-                      <AiOutlineShoppingCart />
-                    </button>
-                  </Badge>
+                  <CartDrawer />
 
                   <button type='button' className={styles.btn__menu__mobile}>
                     <AiOutlineMenu />

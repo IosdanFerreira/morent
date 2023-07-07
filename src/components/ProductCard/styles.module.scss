@@ -1,0 +1,117 @@
+@import "../../scss/variables.scss";
+@import "../../scss/mixins.scss";
+
+.card__container {
+  position: relative;
+  border: 1px solid #cacaca;
+  border-radius: 8px;
+  padding: 20px;
+  height: 390px;
+
+  &:hover .btn__add__to__Cart {
+    opacity: 1;
+    right: 30px;
+  }
+
+  &:hover figure img {
+    transform: scale(1);
+  }
+
+  &:hover .product__text p {
+    text-decoration: underline;
+  }
+
+  figure {
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 170px;
+    height: 200px;
+    overflow: hidden;
+    padding: 10px;
+    transition: 0.2s ease;
+
+    img {
+      transform: scale(0.9);
+      transition: 0.3s ease;
+    }
+  }
+}
+
+.product__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 39%;
+
+  small {
+    text-transform: capitalize;
+  }
+
+  p {
+    margin: 0;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+
+  h6 {
+    margin: 0;
+    margin-top: 15px;
+    font-weight: bolder;
+    font-size: 1.2rem;
+  }
+}
+
+.btn__add__to__Cart {
+  @include flex__center();
+  background: #a9001e;
+  border: none;
+  color: #fff;
+  position: absolute;
+  right: 15px;
+  top: 40px;
+  width: 40px;
+  height: 40px;
+  z-index: 9;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  transition: 0.3s ease;
+  opacity: 0;
+
+  &:hover {
+    background: #d30128;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+    .btn__add__to__Cart {
+        opacity: 1;
+      }
+}
+
+@media only screen and (max-width: 556px) {
+  .card__container {
+    border: 1px solid #cacaca;
+    border-radius: 8px;
+    padding: 20px;
+    height: 178px;
+
+    a {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    figure {
+      margin: 0 auto;
+      margin-bottom: 10px;
+      width: 120px;
+      height: 150px;
+      overflow: hidden;
+      padding: 10px;
+      transition: 0.2s ease;
+    }
+  }
+
+  .btn__add__to__Cart {
+    opacity: 0;
+  }
+}
