@@ -11,6 +11,7 @@ import {AiOutlineShoppingCart, AiOutlineMenu} from 'react-icons/ai';
 
 // components
 import CartDrawer from '@/components/CartDrawer';
+import MenuMobile from '@/components/MenuMobile';
 
 export default function Header() {
 
@@ -41,24 +42,22 @@ export default function Header() {
                       <Link href='/'>Home</Link>
                     </li>
                     <li>
-                      <Link href='/'>Electronics</Link>
+                      <Link href='/category/electronics'>Electronics</Link>
                     </li>
                     <li>
-                      <Link href='/'>Jewelery</Link>
+                      <Link href='/category/jewelery'>Jewelery</Link>
                     </li>
                     <li>
-                      <Link href='/'>Men's clothing</Link>
+                      <Link href="/category/men's%20clothing">Men's clothing</Link>
                     </li>
                     <li>
-                      <Link href='/'>Women's clothing</Link>
+                      <Link href="/category/women's%20clothing">Women's clothing</Link>
                     </li>
                   </ul>
 
                   <CartDrawer />
 
-                  <button type='button' className={styles.btn__menu__mobile}>
-                    <AiOutlineMenu />
-                  </button>
+                  <MenuMobile />
                 </div>
               </div>
             </div>

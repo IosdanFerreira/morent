@@ -1,0 +1,35 @@
+.btn__menu__mobile {
+  display: none;
+  padding: 0 !important;
+  border: none !important;
+  font-size: 35px;
+
+  &:hover {
+    background: transparent !important;
+    color: #000 !important;
+  }
+}
+
+.menu__list {
+
+    li {
+        padding: 10px 0;
+        border-bottom: 1px solid #cacaca;
+
+        &:first-of-type {
+            padding-top: 0;
+        }
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .btn__menu__mobile {
+      display: block;
+    }
+}
+
+@media only screen and (max-width: 556px) {
+    .btn__menu__mobile {
+      font-size: 25px !important;
+    }
+}

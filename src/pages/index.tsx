@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './Home.module.scss';
+import Image from 'next/image';
+import Link from 'next/link';
 
 // components
 import Hero from '@/components/Hero';
@@ -20,6 +22,20 @@ export default function Home({productsData}: {productsData: ProductsProps[]}) {
             <div className="row">
               <div className="col-12">
 
+                <div className={styles.grid__banners__container}>
+                  <Link href='/'>
+                    <figure>
+                      <Image src='/images/banner-1.jpg' fill alt='banner-1' sizes="(max-width: 768px) 50vw" />
+                    </figure>
+                  </Link>
+
+                  <Link href='/'>
+                    <figure>
+                      <Image src='/images/banner-4.jpg' fill alt='banner-4' sizes="(max-width: 768px) 50vw" />
+                    </figure>
+                  </Link>
+                </div>
+
                 <div className={styles.catalog__text}>
                   <h3>Best Sellers</h3>
                   <p>Explore our products and promotions</p>
@@ -32,6 +48,20 @@ export default function Home({productsData}: {productsData: ProductsProps[]}) {
                     ))}
                   </div>
                 )}
+
+                <div className={styles.grid__banners__container}>
+                  <Link href='/'>
+                    <figure>
+                      <Image src='/images/banner-2.jpg' fill alt='banner-2' sizes="(max-width: 768px) 50vw" />
+                    </figure>
+                  </Link>
+
+                  <Link href='/'>
+                    <figure>
+                      <Image src='/images/banner-3.jpg' fill alt='banner-3' sizes="(max-width: 768px) 50vw" />
+                    </figure>
+                  </Link>
+                </div>
 
                 <div className={styles.catalog__text}>
                   <h3>Electronics</h3>
