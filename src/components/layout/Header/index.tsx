@@ -13,6 +13,7 @@ import {AiOutlineShoppingCart, AiOutlineMenu} from 'react-icons/ai';
 import CartDrawer from '@/components/CartDrawer';
 
 export default function Header() {
+
   return (
     <>
       <Head>

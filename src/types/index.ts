@@ -9,4 +9,5 @@ export interface ProductsProps {
         rate: number;
         count: number
     }
+    quantity?: string
 }

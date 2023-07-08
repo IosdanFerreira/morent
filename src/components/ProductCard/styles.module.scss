@@ -113,5 +113,10 @@
 
   .btn__add__to__Cart {
     opacity: 0;
+    display: none;
+
+    &:hover {
+      opacity: 0;
+    }
   }
 }

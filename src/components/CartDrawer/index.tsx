@@ -5,9 +5,25 @@ import { Badge, Drawer } from 'antd/lib';
 
 import { AiOutlineShoppingCart, AiOutlineArrowRight} from 'react-icons/ai';
 
+// components
 import CartProduct from '../CartProduct';
 
+// redux
+import { useSelector } from 'react-redux';
+import { selectTotalValueInCart, selectProductsCountInCart } from '@/redux/cart/cart.selector';
+
+// types
+import { ProductsProps } from '@/types';
+
 export default function CartDrawer() {
+
+  const { products }: {products: ProductsProps[]} = useSelector((rootReducer: any) => rootReducer.cartReducer);
+
+  const totalValueInCart = useSelector(selectTotalValueInCart);
+  const formattedTotalValueInCart = totalValueInCart.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
+
+  const countProductsInCart = useSelector(selectProductsCountInCart);
+
   const [open, setOpen] = useState(false);
 
   const showDrawer = () => {
@@ -20,20 +36,43 @@ export default function CartDrawer() {
 
   return (
     <>
-      <Badge count={2} showZero>
+      <Badge count={countProductsInCart} showZero>
         <button onClick={showDrawer}>
           <AiOutlineShoppingCart />
         </button>
       </Badge>
 
       <Drawer 
-        title="Shopping Bag (2)" 
-        placement="right" 
+        title={`Shopping Bag (${countProductsInCart})`} 
+        placement="right"
         closeIcon={<AiOutlineArrowRight />}
+        bodyStyle={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'baseline',
+          justifyContent: 'space-between',
+          padding: 0
+        }}
         onClose={onClose} 
         open={open}>
-        
-        <CartProduct />
+
+        {products.length > 0 ? (
+          <div className={styles.products__container}>
+            {products.map((product) => (
+              <CartProduct key={product.id} product={product} />
+            ))}
+          </div>
+        ) : (
+          <div className={styles.products__container}>
+            <p style={{marginTop: '10px'}}>No products in your cart</p>
+          </div>
+        )}
+
+        <div className={styles.checkout__container}>
+          <h5>Total: {formattedTotalValueInCart}</h5>
+
+          <button type='button'>Checkout</button>
+        </div>
 
       </Drawer>
     </>
