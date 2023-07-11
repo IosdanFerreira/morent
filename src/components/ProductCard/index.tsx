@@ -10,19 +10,25 @@ import {BsCartPlus} from 'react-icons/bs';
 import { notification } from 'antd/lib';
 
 // redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addProductsToCart } from '@/redux/cart/slice';
+import { addProductsToFavorites } from '@/redux/favorites/slice';
 
 // types
 import { ProductsProps } from '@/types';
 import { Rate } from 'antd/lib';
 import { AnyAction } from 'redux';
+import { AiOutlineHeart } from 'react-icons/ai';
 
 interface IProductCard {
     product: ProductsProps
 }
 
 export default function ProductCard({product}: IProductCard) {
+
+  const { favoritesProducts }: {favoritesProducts: ProductsProps[]} = useSelector((rootReducer: any) => rootReducer.favoritesReducer);
+
+  const productInFavorites = favoritesProducts.find((productFavorite: ProductsProps) => productFavorite.id === product.id);
 
   const dispatch = useDispatch();
 
@@ -49,10 +55,26 @@ export default function ProductCard({product}: IProductCard) {
     openNotificationWithIcon();
   };
 
+  const handleAddProductToFavorites = () => {
+    dispatch(addProductsToFavorites(product));
+  };
+
 
   return (
     <div className={styles.card__container}>
-      <button type='button' className={styles.btn__add__to__Cart} onClick={handleAddProductToCart}><BsCartPlus /></button>
+      <button type='button' className={styles.btn__add__to__Cart} onClick={handleAddProductToCart}><BsCartPlus /></button> 
+
+      <button 
+        type='button' 
+        className={styles.btn__add__to__favorites} 
+        onClick={handleAddProductToFavorites}
+        style={{
+          background: productInFavorites ? '#a9001e' : 'transparent',
+          color: productInFavorites ? '#fff' : '#a9001e'
+        }}>
+        <AiOutlineHeart />
+      </button>
+
       <Link href={`/single-product/${product.id}`}>
 
         <figure>

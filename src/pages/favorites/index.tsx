@@ -1,16 +1,16 @@
 import React from 'react';
 import styles from './styles.module.scss';
-import Image from 'next/image';
+
+// redux
+import { useSelector } from 'react-redux';
 
 // types
 import { ProductsProps } from '@/types';
 import ProductCard from '@/components/ProductCard';
-import { useRouter } from 'next/router';
 
-export default function Category({productsData}: {productsData : ProductsProps[]}) {
+export default function Favorites() {
 
-  const router = useRouter();
-  const nameCategory = router.query.id;
+  const { favoritesProducts }: {favoritesProducts: ProductsProps[]} = useSelector((rootReducer: any) => rootReducer.favoritesReducer);
 
   return (
     <main>
@@ -20,15 +20,19 @@ export default function Category({productsData}: {productsData : ProductsProps[]
             <div className="col-12">
 
               <div className={styles.category__title}>
-                <h3>{nameCategory}</h3>
-                <p>Explore our products and promotions</p>
+                <h3>Favorites</h3>
+                <p>Your favorites products</p>
               </div>
 
-              {productsData && (
+              {favoritesProducts.length > 0 ? (
                 <div className={styles.products__container}>
-                  {productsData.map((product) => (
+                  {favoritesProducts.map((product) => (
                     <ProductCard key={product.id} product={product} />
                   ))}
+                </div>
+              ) : (
+                <div className={styles.products__container}>
+                  <p>No products here</p>
                 </div>
               )}
             </div>
@@ -37,14 +41,4 @@ export default function Category({productsData}: {productsData : ProductsProps[]
       </section>
     </main>
   );
-}
-
-export async function getServerSideProps(context: any) {
-  const { params } = context;
-
-  const res = await fetch(`https://fakestoreapi.com/products/category/${params.id}`);
-  const productsData = await res.json();
-  return { 
-    props: { productsData },
-  };
 }

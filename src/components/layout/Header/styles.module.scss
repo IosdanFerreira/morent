@@ -1,4 +1,5 @@
 @import "../../../scss/variables.scss";
+@import "../../../scss/mixins.scss";
 
 @font-face {
   font-family: "Philosopher-Bold";
@@ -77,6 +78,26 @@
         color: #fff;
       }
     }
+
+    .link__favorites {
+      @include flex__center();
+      font-size: 18px;
+      font-weight: 400;
+      color: #000;
+      border: 1px solid #000;
+      background: #fff;
+      border-radius: 20px;
+      padding: 6px 8px;
+      width: 34px;
+      height: 34px;
+      transition: 0.2s ease;
+
+      &:hover {
+        border-color: #000;
+        background: #000;
+        color: #fff !important;
+      }
+    }
   }
 }
 
@@ -89,6 +110,12 @@
     button {
       font-size: 25px;
     }
+
+    .link__favorites {
+      width: 41px;
+      height: 42px;
+      font-size: 25px;
+    }
   }
 }
 
@@ -98,7 +125,14 @@
   }
 
   .logo__container .list__container {
+    padding-right: 25px;
     button {
+      font-size: 20px;
+    }
+
+    .link__favorites {
+      width: 36px;
+      height: 36px;
       font-size: 20px;
     }
   }

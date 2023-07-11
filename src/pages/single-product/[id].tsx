@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 // types
 import { ProductsProps } from '@/types';
 import { addProductsToCart } from '@/redux/cart/slice';
+import { addProductsToFavorites } from '@/redux/favorites/slice';
 
 export default function SingleProduct({productData}: {productData : ProductsProps}) {
 
@@ -15,6 +16,9 @@ export default function SingleProduct({productData}: {productData : ProductsProp
 
   const handleAddProductToCart = () => {
     dispatch(addProductsToCart(productData));
+  };
+  const handleAddProductToFavorites = () => {
+    dispatch(addProductsToFavorites(productData));
   };
 
   const formattedPrice = (productData.price * 5).toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
@@ -40,6 +44,7 @@ export default function SingleProduct({productData}: {productData : ProductsProp
                   <p>{productData?.description}</p>
 
                   <button type='button' onClick={handleAddProductToCart}>Add to cart</button>
+                  <button type='button' onClick={handleAddProductToFavorites}>Add to favorites</button>
                 </div>
               </div>
               

@@ -6,14 +6,23 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Avatar, Badge, Space } from 'antd/lib';
-import {AiOutlineShoppingCart, AiOutlineMenu} from 'react-icons/ai';
+import {AiOutlineHeart} from 'react-icons/ai';
+
+// redux
+import {useSelector } from 'react-redux';
 
 // components
 import CartDrawer from '@/components/CartDrawer';
 import MenuMobile from '@/components/MenuMobile';
+import { Badge } from 'antd/lib';
+
+// types
+import { ProductsProps } from '@/types';
 
 export default function Header() {
+
+  const { favoritesProducts }: {favoritesProducts: ProductsProps[]} = useSelector((rootReducer: any) => rootReducer.favoritesReducer);
+
 
   return (
     <>
@@ -56,6 +65,10 @@ export default function Header() {
                   </ul>
 
                   <CartDrawer />
+
+                  <Badge count={favoritesProducts.length} showZero>
+                    <Link href='/favorites' className={styles.link__favorites}><AiOutlineHeart /></Link>
+                  </Badge>
 
                   <MenuMobile />
                 </div>

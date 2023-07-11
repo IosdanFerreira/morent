@@ -12,6 +12,10 @@
     opacity: 1;
     right: 30px;
   }
+  &:hover .btn__add__to__favorites {
+    opacity: 1;
+    right: 30px;
+  }
 
   &:hover figure img {
     transform: scale(1);
@@ -63,7 +67,7 @@
 
 .btn__add__to__Cart {
   @include flex__center();
-  background: #a9001e;
+  background: #003ba9;
   border: none;
   color: #fff;
   position: absolute;
@@ -78,14 +82,43 @@
   opacity: 0;
 
   &:hover {
-    background: #d30128;
+    background: #0049d1;
+  }
+}
+
+.btn__add__to__favorites {
+  @include flex__center();
+  background: transparent;
+  border: 2px solid #a9001e;
+  color: #a9001e;
+  position: absolute;
+  right: 15px;
+  top: 90px;
+  width: 40px;
+  height: 40px;
+  z-index: 9;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  transition: 0.3s ease;
+  opacity: 0;
+
+  &:hover {
+    background: #a9001e;
+    color: #fff;
   }
 }
 
 @media only screen and (max-width: 992px) {
+  .card__container {
     .btn__add__to__Cart {
-        opacity: 1;
-      }
+      opacity: 1;
+      right: 30px;
+    }
+    .btn__add__to__favorites {
+      opacity: 1;
+      right: 30px;
+    }
+  }
 }
 
 @media only screen and (max-width: 556px) {
@@ -112,6 +145,15 @@
   }
 
   .btn__add__to__Cart {
+    opacity: 0;
+    display: none;
+
+    &:hover {
+      opacity: 0;
+    }
+  }
+
+  .btn__add__to__favorites {
     opacity: 0;
     display: none;
 

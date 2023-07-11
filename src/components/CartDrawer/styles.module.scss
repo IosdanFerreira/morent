@@ -26,7 +26,7 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #a0a0a0; 
+    background-color: #a0a0a0;
     border-radius: 4px;
   }
 
@@ -53,6 +53,7 @@
     color: #fff;
     padding: 10px 0;
     font-size: 13px;
+    height: 34px;
     text-transform: uppercase;
     border-radius: 5px;
 
@@ -63,14 +64,13 @@
 }
 
 @media only screen and (max-width: 992px) {
-
-    .btn__menu__mobile {
-      display: block;
-    }
+  .btn__menu__mobile {
+    display: block;
+  }
 }
 
 @media only screen and (max-width: 556px) {
-    .btn__menu__mobile {
-      font-size: 30px;
+  .btn__menu__mobile {
+    font-size: 30px;
   }
 }

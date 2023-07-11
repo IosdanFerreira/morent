@@ -34,19 +34,19 @@ export default function MenuMobile() {
         open={open}>
   
         <ul className={styles.menu__list}>
-          <li>
+          <li onClick={onClose}>
             <Link href='/'>Home</Link>
           </li>
-          <li>
+          <li onClick={onClose}>
             <Link href='/category/electronics'>Electronics</Link>
           </li>
-          <li>
+          <li onClick={onClose}>
             <Link href='/category/jewelery'>Jewelery</Link>
           </li>
-          <li>
+          <li onClick={onClose}>
             <Link href="/category/men's%20clothing">Men's clothing</Link>
           </li>
-          <li>
+          <li onClick={onClose}>
             <Link href="/category/women's%20clothing">Women's clothing</Link>
           </li>
         </ul>
