@@ -69,7 +69,7 @@ export default function ProductCard({product}: IProductCard) {
         className={styles.btn__add__to__favorites} 
         onClick={handleAddProductToFavorites}
         style={{
-          background: productInFavorites ? '#a9001e' : 'transparent',
+          background: productInFavorites ? '#a9001e' : '#fff',
           color: productInFavorites ? '#fff' : '#a9001e'
         }}>
         <AiOutlineHeart />
