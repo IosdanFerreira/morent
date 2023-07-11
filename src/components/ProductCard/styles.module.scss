@@ -88,7 +88,7 @@
 
 .btn__add__to__favorites {
   @include flex__center();
-  background: #fff;
+  background: #fff !important;
   border: 2px solid #a9001e;
   color: #a9001e;
   position: absolute;
