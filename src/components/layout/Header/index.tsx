@@ -44,10 +44,9 @@ export default function Header() {
     setShowSearchMobile(false);
   };
 
-  const handleSubmit = (values: SearchFormProps, { resetForm }: FormikHelpers<SearchFormProps>) => {
+  const handleSubmit = (values: SearchFormProps) => {
     if (values.search !== '' && values.search !== null) {
       router.push(`/search/${values.search.replace(/[- ]+/g, '-')}`);
-      resetForm();
     }
   };
 
