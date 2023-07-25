@@ -37,44 +37,48 @@ export default function CartDrawer() {
   return (
     <>
       <Badge count={countProductsInCart} showZero>
-        <button onClick={showDrawer}>
+        <button onClick={showDrawer} data-testid='btn_cart'>
           <AiOutlineShoppingCart />
         </button>
       </Badge>
 
-      <Drawer 
-        title={`Shopping Bag (${countProductsInCart})`} 
-        placement="right"
-        closeIcon={<AiOutlineArrowRight />}
-        bodyStyle={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'baseline',
-          justifyContent: 'space-between',
-          padding: 0
-        }}
-        onClose={onClose} 
-        open={open}>
+      {open && (
+        <Drawer 
+          title={`Shopping Bag (${countProductsInCart})`} 
+          placement="right"
+          closeIcon={
+            <button style={{all: 'unset'}} onClick={onClose} data-testid="close-icon">
+              <AiOutlineArrowRight />
+            </button>}
+          bodyStyle={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'baseline',
+            justifyContent: 'space-between',
+            padding: 0
+          }} 
+          open={open}>
 
-        {products.length > 0 ? (
-          <div className={styles.products__container}>
-            {products.map((product) => (
-              <CartProduct key={product.id} product={product} />
-            ))}
+          {products?.length > 0 ? (
+            <div className={styles.products__container}>
+              {products?.map((product) => (
+                <CartProduct key={product.id} product={product} />
+              ))}
+            </div>
+          ) : (
+            <div className={styles.products__container}>
+              <p style={{marginTop: '10px'}}>No products in your cart</p>
+            </div>
+          )}
+
+          <div className={styles.checkout__container}>
+            <h5>Total: {formattedTotalValueInCart}</h5>
+
+            <button type='button' data-testid="checkout_button">Checkout</button>
           </div>
-        ) : (
-          <div className={styles.products__container}>
-            <p style={{marginTop: '10px'}}>No products in your cart</p>
-          </div>
-        )}
 
-        <div className={styles.checkout__container}>
-          <h5>Total: {formattedTotalValueInCart}</h5>
-
-          <button type='button'>Checkout</button>
-        </div>
-
-      </Drawer>
+        </Drawer>
+      )}
     </>
   );
 };
