@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { removeProductsToCart, increaseProductToCart, decreaseProductToCart } from '@/redux/cart/slice';
 
 import {AiOutlineMinus, AiOutlinePlus, AiOutlineClose} from 'react-icons/ai';
+import { formattedPriceInBRL } from '@/utils/formattedPriceInBRL';
 
 interface ICartProduct {
     product: ProductsProps
@@ -30,10 +31,6 @@ export default function CartProduct({product}: ICartProduct) {
     dispatch(decreaseProductToCart(product));
   };
 
-  const totalPerProduct = (product.price * 5) * Number(product.quantity);
-
-  const formattedTotalPerProduct = totalPerProduct.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
-
   return (
     <div className={styles.product__container}>
       <div className={styles.product__info}>
@@ -43,23 +40,22 @@ export default function CartProduct({product}: ICartProduct) {
 
         <div className={styles.product__text__container}>
           {product.title.length > 20 ? (
-
             <p>{product.title.substring(0,20) + '...'}</p>
           ) : (
             <p>{product.title}</p> 
           )}
 
           <div className={styles.count__controler}>
-            <button type='button' onClick={handleDecreaseProductToCart}><AiOutlineMinus /></button>
-            <span>{product.quantity}</span>
-            <button type='button' onClick={handleIncreaseProductToCart}><AiOutlinePlus /></button>
+            <button type='button' onClick={handleDecreaseProductToCart} data-testid='btn_descrease_product_to_cart'><AiOutlineMinus /></button>
+            <span data-testid='product_quantity'>{product.quantity}</span>
+            <button type='button' onClick={handleIncreaseProductToCart} data-testid='btn_increase_product_to_cart'><AiOutlinePlus /></button>
           </div>
         </div>
       </div>
 
       <div className={styles.total__value__per__product}>
-        <button type='button' onClick={handleRemoveProductToCart}><AiOutlineClose /></button>
-        <small>{formattedTotalPerProduct}</small>
+        <button type='button' onClick={handleRemoveProductToCart} data-testid='btn_remove_product_to_cart'><AiOutlineClose /></button>
+        <small data-testid='total_value'>{formattedPriceInBRL((product.price * 5) * Number(product.quantity))}</small>
       </div>
 
     </div>

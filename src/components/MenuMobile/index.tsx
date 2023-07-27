@@ -22,36 +22,39 @@ export default function MenuMobile() {
   
   return (
     <>
-      <button type='button' className={styles.btn__menu__mobile} onClick={showDrawer}>
+      <button type='button' className={styles.btn__menu__mobile} onClick={showDrawer} data-testid='btn_open_menu'>
         <AiOutlineMenu />
       </button>
   
-      <Drawer 
-        title={'Menu'} 
-        placement="right"
-        closeIcon={<AiOutlineArrowRight />}
-        onClose={onClose} 
-        open={open}>
+      {open && (
+        <Drawer 
+          title={'Menu'} 
+          placement="right"
+          closeIcon={
+            <AiOutlineArrowRight onClick={onClose} data-testid="close-icon" />
+          }
+          open={open}>
   
-        <ul className={styles.menu__list}>
-          <li onClick={onClose}>
-            <Link href='/'>Home</Link>
-          </li>
-          <li onClick={onClose}>
-            <Link href='/category/electronics'>Electronics</Link>
-          </li>
-          <li onClick={onClose}>
-            <Link href='/category/jewelery'>Jewelery</Link>
-          </li>
-          <li onClick={onClose}>
-            <Link href="/category/men's%20clothing">Men's clothing</Link>
-          </li>
-          <li onClick={onClose}>
-            <Link href="/category/women's%20clothing">Women's clothing</Link>
-          </li>
-        </ul>
+          <ul className={styles.menu__list}>
+            <li onClick={onClose} data-testid='li_link_list'>
+              <Link href='/'>Home</Link>
+            </li>
+            <li onClick={onClose} data-testid='li_link_list'>
+              <Link href='/category/electronics'>Electronics</Link>
+            </li>
+            <li onClick={onClose} data-testid='li_link_list'>
+              <Link href='/category/jewelery'>Jewelery</Link>
+            </li>
+            <li onClick={onClose} data-testid='li_link_list'>
+              <Link href="/category/men's%20clothing">Men's Clothing</Link>
+            </li>
+            <li onClick={onClose} data-testid='li_link_list'>
+              <Link href="/category/women's%20clothing">Women's Clothing</Link>
+            </li>
+          </ul>
   
-      </Drawer>
+        </Drawer>
+      )}
     </>
   );
 }

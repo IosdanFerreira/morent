@@ -65,8 +65,8 @@ export default function Header() {
             <div className="col-12">
               <div className={styles.logo__container}>
                 <Link href='/' className={styles.logo}>
-                  <figure>
-                    <Image src='/images/logo.svg' alt='Logo' fill />
+                  <figure data-testid='logo_container'>
+                    <Image src='/images/logo.svg' alt='Logo' fill data-testid='logo_image' />
                   </figure>
                   <h2>Morent</h2>
                 </Link>
@@ -94,7 +94,7 @@ export default function Header() {
                           onChange={handleChange}
                           onBlur={handleBlur}
                         />
-                        <button><HiMagnifyingGlass /></button>
+                        <button data-testid='btn_form_search'><HiMagnifyingGlass /></button>
                       </div>
                     </form>
                   )}
@@ -112,17 +112,17 @@ export default function Header() {
                       <Link href='/category/jewelery'>Jewelery</Link>
                     </li>
                     <li>
-                      <Link href="/category/men's%20clothing">Men's clothing</Link>
+                      <Link href="/category/men's%20clothing">Men's Clothing</Link>
                     </li>
                     <li>
-                      <Link href="/category/women's%20clothing">Women's clothing</Link>
+                      <Link href="/category/women's%20clothing">Women's Clothing</Link>
                     </li>
                   </ul>
 
                   <CartDrawer />
 
                   <Badge count={favoritesProducts.length} showZero>
-                    <Link href='/favorites' className={styles.link__favorites}><AiOutlineHeart /></Link>
+                    <Link href='/favorites' className={styles.link__favorites} data-testid='link_favorites'><AiOutlineHeart /></Link>
                   </Badge>
 
                   <button type='button' className={styles.btn__show__search__mobile} onClick={handleShowSearchMobile}><HiMagnifyingGlass /></button>
@@ -139,12 +139,9 @@ export default function Header() {
                     onSubmit={handleSubmit}
                   >{({
                       values,
-                      errors,
-                      touched,
                       handleChange,
                       handleBlur,
                       handleSubmit,
-                      resetForm
                     }) =>(
                       <form onSubmit={handleSubmit}>
                         <div className={styles.search__mobile__container}>

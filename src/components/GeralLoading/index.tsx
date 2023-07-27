@@ -3,8 +3,8 @@ import styles from './styles.module.scss';
 
 export default function GeralLoading() {
   return (
-    <div className={styles.spinner__wrapper}>
-      <span className="loader"></span>
+    <div className={styles.spinner__wrapper} data-testid='loader_container'>
+      <span className="loader" data-testid='loader'></span>
     </div>
   );
 }

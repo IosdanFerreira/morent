@@ -37,9 +37,7 @@ export default function CartDrawer() {
   return (
     <>
       <Badge count={countProductsInCart} showZero>
-        <button onClick={showDrawer} data-testid='btn_cart'>
-          <AiOutlineShoppingCart />
-        </button>
+        <AiOutlineShoppingCart  onClick={showDrawer} data-testid='btn_cart' className={styles.cart__button} />
       </Badge>
 
       {open && (
@@ -47,9 +45,8 @@ export default function CartDrawer() {
           title={`Shopping Bag (${countProductsInCart})`} 
           placement="right"
           closeIcon={
-            <button style={{all: 'unset'}} onClick={onClose} data-testid="close-icon">
-              <AiOutlineArrowRight />
-            </button>}
+            <AiOutlineArrowRight onClick={onClose} data-testid="close-icon" />
+          }
           bodyStyle={{
             display: 'flex',
             flexDirection: 'column',

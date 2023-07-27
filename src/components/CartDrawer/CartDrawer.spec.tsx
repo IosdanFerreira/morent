@@ -5,6 +5,7 @@ import '@testing-library/jest-dom';
 import store from '@/redux/store';
 import { Provider, useSelector } from 'react-redux';
 import  {faker} from '@faker-js/faker';
+import { ProductsProps } from '@/types';
 
 jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
@@ -21,26 +22,30 @@ const renderComponent = () => {
 
 const mockProducts = [
   {
-    id: faker.number,
-    title: faker.string,
-    price: faker.number,
-    description: faker.string,
-    category: faker.string,
-    image: faker.string,
+    id: 1,
+    title: 'Mens Casual Slim Fit',
+    category:'men\'s clothing',
+    description: 'The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.',
+    image: 'https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg',
+    price: 15.99,
+    quantity: 2,
     rating: {
-      rate: faker.number,
-      count: faker.number
+      count: 430,
+      rate: 2.1
     },
-    quantity: faker.string
-  }
+  },
 ];
-
 const mockCount = 2;
 const mockTotalValue = 'R$30,00';
 
 const useSelectorSpy = jest.spyOn(require('react-redux'), 'useSelector');
 
-describe('Cart Drawer Unit Tests', () => {
+describe('Cart Drawer', () => {
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  
   it('should cart button render correctly', () => {
     renderComponent();
 
@@ -75,18 +80,6 @@ describe('Cart Drawer Unit Tests', () => {
     expect(cartDrawer).not.toBeInTheDocument();
   });
 
-  it('should render total value in drawer', () => {
-    renderComponent();
-
-    const cartButton = screen.getByTestId('btn_cart');
-    fireEvent.click(cartButton);
-
-    const cartDrawer = screen.getByText(/Shopping Bag/i);
-    expect(cartDrawer).toBeInTheDocument();
-
-    expect(screen.queryByText(/Total:/i, {selector: 'h5'})).toBeInTheDocument();
-  });
-
   it('should render checkout button', () => {
     renderComponent();
 
@@ -110,12 +103,6 @@ describe('Cart Drawer Unit Tests', () => {
 
     const noProductsMessage = screen.getByText('No products in your cart');
     expect(noProductsMessage).toBeInTheDocument();
-  });
-});
-
-describe('Cart Drawer Integration Tests', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
   });
 
   it('should count is displayed correctly based on products in the cart', () => {
@@ -141,5 +128,17 @@ describe('Cart Drawer Integration Tests', () => {
     const productsTotalValue = screen.getByText(mockTotalValue);
     expect(productsTotalValue).toBeInTheDocument();
 
+  });
+
+  it(' should render the products in the cart', () => {
+    renderComponent();
+
+    useSelectorSpy.mockReturnValueOnce({ products: mockProducts });
+
+    const cartButton = screen.getByTestId('btn_cart');
+    fireEvent.click(cartButton);
+
+    const productDescribe = screen.getByText(mockProducts[0].title);
+    expect(productDescribe).toBeInTheDocument();
   });
 });

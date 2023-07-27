@@ -20,6 +20,8 @@ import { Rate } from 'antd/lib';
 import { AnyAction } from 'redux';
 import { AiOutlineHeart } from 'react-icons/ai';
 
+import { formattedPriceInBRL } from '@/utils/formattedPriceInBRL';
+
 interface IProductCard {
     product: ProductsProps
 }
@@ -44,12 +46,6 @@ export default function ProductCard({product}: IProductCard) {
     });
   };
 
-  const formattedPrice = (price: number) => {
-    const priceFormatted = price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
-
-    return priceFormatted;
-  };
-
   const handleAddProductToCart = () => {
     dispatch(addProductsToCart(product));
     openNotificationWithIcon();
@@ -62,7 +58,7 @@ export default function ProductCard({product}: IProductCard) {
 
   return (
     <div className={styles.card__container}>
-      <button type='button' className={styles.btn__add__to__Cart} onClick={handleAddProductToCart}><BsCartPlus /></button> 
+      <button type='button' className={styles.btn__add__to__Cart} onClick={handleAddProductToCart} data-testid='btn_add_to_Cart'><BsCartPlus /></button> 
 
       <button 
         type='button' 
@@ -71,14 +67,16 @@ export default function ProductCard({product}: IProductCard) {
         style={{
           background: productInFavorites ? '#a9001e' : '#fff',
           color: productInFavorites ? '#fff' : '#a9001e'
-        }}>
+        }}
+        data-testid='btn_add_to_favorites'
+      >
         <AiOutlineHeart />
       </button>
 
-      <Link href={`/single-product/${product.id}`}>
+      <Link href={`/single-product/${product.id}`} data-testid='link_single_product'>
 
-        <figure>
-          <Image src={product.image} fill alt={product.title} sizes="(max-width: 768px) 50vw"/>
+        <figure data-testid='image_container'>
+          <Image src={product.image} fill alt={product.title} sizes="(max-width: 768px) 50vw" data-testid='product_image'/>
         </figure>
 
         <div className={styles.product__text}>
@@ -94,7 +92,7 @@ export default function ProductCard({product}: IProductCard) {
             <Rate disabled defaultValue={product.rating.rate} />
           </div>
 
-          <h6>{formattedPrice(product.price * 5)}</h6>
+          <h6  data-testid='total_pice'>{formattedPriceInBRL(product.price * 5)}</h6>
 
         </div>
       </Link>
